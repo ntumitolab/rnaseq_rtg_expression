@@ -33,12 +33,8 @@ jobs:
       - name: Install Python dependencies if cache miss
         run: pip install -r requirements.txt
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
-      - name: Check external links
-        run: jupyter-book build docs --builder linkcheck
-
       - name: Build Jupyter Books
         run: jb build docs --warningiserror --keep-going -v
-
       - name: Deploy Website
         uses: peaceiris/actions-gh-pages@v3.8.0
         if: github.ref == 'refs/heads/main'
