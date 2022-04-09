@@ -1,0 +1,36 @@
+name: Auto update Julia dependencies
+
+env:
+  JULIA_VERSION: "1.7"
+  JULIA_PKG_PRECOMPILE_AUTO: 0
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # Every day
+
+jobs:
+  update-notebook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Julia ${{ env.JULIA_VERSION }}
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ env.JULIA_VERSION }}
+      - name: Update Julia dependencies
+        run: julia --color=yes --threads=auto --project=@. -e 'import Pkg; Pkg.update()'
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          # PAT with repo access
+          token: ${{ secrets.PAT }}
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
