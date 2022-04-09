@@ -33,6 +33,15 @@ jobs:
       - name: Install Python dependencies if cache miss
         run: pip install -r requirements.txt
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
+      - name: Cache Jupyter book outputs
+        uses: actions/cache@v3
+        env:
+          cache-name: "jb"
+        with:
+          path: docs/_build/
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('docs/**/*.md', 'docs/**/*.ipynb') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
       - name: Build Jupyter Books
         run: jb build docs --warningiserror --keep-going -v
       - name: Deploy Website
