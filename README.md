@@ -22,4 +22,31 @@ python D3ECmd.py SingelCellRNAseq_yeast_GSE102475_LabelSep.txt  SingelCellRNAseq
 
 the installation details can be found at https://github.com/hemberg-lab/D3E [5]. Alternatively, the filtered RNA seq data can be processed by D3E online service (https://www.sanger.ac.uk/sanger/GeneRegulation_D3E/).
 
-The mean expression values (`mu1` in [analysis_RNA-Seq.ipynb](docs/RNAseq_RTG_expression/analysis_RNA-Seq.ipynb)) are summarized in [RNAseq_RTG_expression.csv](https://github.com/ntumitolab/RetroSignalModel.jl/blob/main/src/data/RNAseq_RTG_expression.csv) that contains the relative expression levels of RTG components under normal and stressed conditions.
+The mean expression values (`mu1` in [analysis_RNA-Seq.ipynb](docs/RNAseq_RTG_expression/analysis_RNA-Seq.ipynb)) are summarized in [RNAseq_RTG_expression.csv][] that contains the relative expression levels of RTG components under normal and stressed conditions.
+
+[RNAseq_RTG_expression.csv]: https://github.com/ntumitolab/RetroSignalModel.jl/blob/main/src/data/RNAseq_RTG_expression.csv
+
+## File decriptions
+
+| File                                                                                                                               | Description                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [RNAseq_RTG_expression.csv][]                                                                    | Differential gene expression of RTG elements                                                     |
+| [analysis_RNA-Seq.ipynb](docs/analysis_RNA-Seq.ipynb)                                                    | Visualization of D3E processed differential gene expressions                                     |
+| [get_RTG-Expression-Table_zero-removed.ipynb](docs/get_RTG-Expression-Table_zero-removed.ipynb)          | Remove zeros in RNA-seq data and select genes of interest                                        |
+| [SingleCellRNAseq_yeast_GSE102475_LabelSep.txt](docs/data/SingleCellRNAseq_yeast_GSE102475_LabelSep.txt) | RNA seq data of genes of interest (zeros are removed)                                            |
+| [d3e_SC_resp_RtgGenes_GSE102475.csv](docs/data/d3e_SC_resp_RtgGenes_GSE102475.csv)                       | Differential gene expression  (processed by https://www.sanger.ac.uk/sanger/GeneRegulation_D3E/) |
+
+
+## Installation
+
+The following steps are needed to execute Jupyter notebooks under [src/data/RNAseq_RTG_expression/](src/data/RNAseq_RTG_expression/). Noted that those notebooks are written in Python 3.7.
+
+1. Install Python 3.7 or above (https://www.python.org/)
+2. Install pip3 (https://pip.pypa.io/en/stable/)
+3. Install Python packages
+    ```
+    pip3 install matplotlib
+    pip3 install pandas
+    pip3 install numpy
+    pip3 install seaborn
+    ```
