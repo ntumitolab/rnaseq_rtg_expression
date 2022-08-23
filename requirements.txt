@@ -1,5 +1,5 @@
 matplotlib==3.5.2
-jupyter-book==0.13.0
+jupyter-book==0.13.1
 seaborn==0.11.2
 pandas==1.4.3
 numpy==1.23.1
