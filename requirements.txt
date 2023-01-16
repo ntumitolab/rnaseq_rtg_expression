@@ -1,4 +1,4 @@
-matplotlib==3.6.2
+matplotlib==3.6.3
 jupyter-book==0.13.1
 seaborn==0.12.2
 pandas==1.5.1
